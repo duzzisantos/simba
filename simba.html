@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Simba - Business Calculator</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="simba.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <h1>Simba</h1>
+    <nav>
+        <div class="hamburger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="#" class="" id="">Finance</a></li>
+            <li><a href="#" class="" id="">Economics</a></li>
+            <li><a href="#" class="" id="">Accounting</a></li>
+            <li><a href="#" class="" id="">Operations</a></li>
+            <li><a href="#" class="" id="">Supply Chain</a></li>
+            <li><a href="#" class="" id="">Marketing</a></li>
+            <li><a href="#" class="" id="">HR</a></li>
+            <li><a href="#" class="" id="">Projects</a></li>
+        </ul>
+    </nav>
+
+    <hr>
+
+    <h2 style="text-align: center;">FINANCE CALCULATOR</h2>
+    <h2>Simple Interest Calculator</h2>
+    <p>Fill in the following fields with numbers only.</p>
+    <form action="">
+        <input type="text" placeholder="Principal" id="principal" oninput="compute()">
+        <input type="text" placeholder="Rate" id="rate" oninput="compute()">
+        <input type="text" placeholder="Time" id="time" oninput="compute()">
+        <input type="text" placeholder="Simple Interest" id="answer" oninput="compute()">
+        <input type="reset" value="Reset" id="reset">
+    </form>
+    <hr>
+
+    <h2>Net Income Calculator</h2>
+    <p>Fill in your income information accordingly.</p>
+    <form action="">
+        <input type="text" placeholder="Gross Salary" id="gross" oninput="netIncome()" required>
+        <input type="text" placeholder="Tax in Decimals" id="tax" oninput="netIncome()">
+        <input type="text" placeholder="Social Security in Decimals" id="social" oninput="netIncome()">
+        <input type="text" placeholder="Net Income" id="net" oninput="netIncome()">
+        <input type="reset" value="Reset" id="reset">
+    </form>
+
+    <hr>
+    <h2>Progressive Tax Calculator (in US Dollars).</h2>
+    <p>The more income you earn, the higher you move across the tax levels. Here You can determine
+        your tax category from Levels 1 through 4.
+    </p>
+    <form action="">
+        <label for="gross2">
+            Gross Income:
+            <input type="text" placeholder="Gross Salary" id="gross2" oninput="pIncome()">
+        </label>
+        <label for="level1">
+            Level One:
+            <input type="text" placeholder="Tax Level 1" id="level1" oninput="pIncome()" disabled>
+        </label>
+        <label for="level2">
+            Level Two:
+            <input type="text" placeholder="Tax Level 2" id="level2" oninput="pIncome()" disabled>
+        </label>
+        <label for="level3">
+            Level Three:
+            <input type="text" placeholder="Tax Level 3" id="level3" oninput="pIncome()" disabled>
+        </label>
+        <label for="level4">
+            Level Four:
+            <input type="text" placeholder="Tax Level 4" id="level4" oninput="pIncome()" disabled>
+        </label>
+        <label for="netIncome">
+            Net Income:
+            <input type="text" id="netIncome" oninput="pIncome()">
+        </label>
+
+    </form>
+
+    <hr>
+    <h2>Volume Discount Calculator</h2>
+    <p>Discount savings are dependent on purchase quantity. The more purhases you make, the higher the discount.</p>
+    <form action="">
+        <label for="price">
+            Unit Price:
+            <input type="text" placeholder="Unit Price" id="price" oninput="discount()">
+        </label>
+        <label for="quantity">
+            Quantity:
+            <input type="text" placeholder="Quantity" id="quantity" oninput="discount()">
+        </label>
+        <label for="tPrice">
+            Total Price:
+            <input type="text" placeholder="Total Price" id="tPrice" oninput="discount()">
+        </label>
+        <label for="dPrice">
+            Discounted Price:
+            <input type="text" placeholder="Discounted Price" id="dPrice" oninput="discount()">
+        </label>
+        <label for="savings">
+            Discounted Savings:
+            <input type="text" id="savings" oninput="discount()">
+        </label>
+        <input type="reset" value="Reset" id="reset">
+    </form>
+
+    <hr>
+    <h2>Breakeven Calculator</h2>
+    <p>This calculates Breakeven Quantity</p>
+    <form action="">
+        <label for="FC">Fixed Cost:</label>
+        <input type="text" oninput="bep()" id="fixedCost">
+        <label for="USP">Unit Price:</label>
+        <input type="text" oninput="bep()" id="sellingPrice">
+        <label for="UVC">Unit Variable Cost:</label>
+        <input type="text" oninput="bep()" id="variableCost">
+        <label for="BEP">Breakeven Quantity:</label>
+        <input type="text" oninput="bep()" id="breakEven">
+        <label for="BEP">Breakeven Revenue:</label>
+        <input type="text" oninput="bep()" id="bePrice">
+        <input type="reset" value="Reset" id="reset">
+    </form>
+
+    <hr>
+    <h2>Change in Demand</h2>
+    <p>This determines whether demand is elastic or inelastic</p>
+    <form onsubmit="return false">
+        <label for="q1">Price 1:</label>
+        <input type="text" oninput="demand()" id="p1">
+        <label for="q1">Quantity 1:</label>
+        <input type="text" oninput="demand()" id="q1">
+        <label for="q1">Price 2:</label>
+        <input type="text" oninput="demand()" id="p2">
+        <label for="q1">Quantity 2:</label>
+        <input type="text" oninput="demand()" id="q2">
+        <label for="inference">Inference:</label>
+        <input type="text" oninput="demand()" id="inference">
+        <input type="reset" value="Reset" id="reset">
+    </form>
+
+    <hr>
+
+    <h2>Compound Interest</h2>
+    <p>This calculates compounded interest based on the number of compounding frequency per year.</p>
+    <form action="">
+        <label for="principal">Principal:</label>
+        <input type="text" oninput="compound()" id="principal1">
+        <label for="interest rate">Interest Rate:</label>
+        <input type="text" oninput="compound()" id="rate1">
+        <label for="time">Time:</label>
+        <input type="text" oninput="compound()" id="time1">
+        <label for="frequency">Compounding Frequency:</label>
+        <input type="text" oninput="compound()" id="frequency">
+        <label for="result">Compound Interest:</label>
+        <input type="text" oninput="compound()" id="cInterest">
+        <input type="reset" value="Reset" id="reset">
+    </form>
+
+    <hr>
+
+    <h2>Monthly Mortgage</h2>
+    <p>This calulates the monthly mortgage contribution</p>
+    <form action="">
+        <label for="principal">Loan Balance:</label>
+        <input type="number" id="loan" oninput="mGage()">
+        <label for="interest Rate">Interest Rate in Decimals:</label>
+        <input type="number" id="iRates" oninput="mGage()">
+        <label for="months">Number of Months Left:</label>
+        <input type="number" id="monthsLeft" oninput="mGage()">
+        <label for="mortgage">Monthly Mortgage</label>
+        <input type="number" id="mortGages" oninput="mGage()">
+        <input type="reset" id="reset" value="Reset">
+    </form>
+
+    <hr>
+
+    <h2>Equated Monthly Installment (EMI)</h2>
+    <p>This calculates the agreed-upon monthly installment between a buyer and seller.</p>
+    <form action="">
+        <label for="principal">Principal:</label>
+        <input type="text" oninput="emi()" id="principal3">
+        <label for="rate">Interest Rate:</label>
+        <input type="text" oninput="emi()" id="rate3">
+        <label for="months">Number of Months:</label>
+        <input type="text" oninput="emi()" id="months3">
+        <label for="result">Total Interest:</label>
+        <input type="text" oninput="emi()" id="installMent">
+        <label for="total">Monthly Interest:</label>
+        <input type="text" oninput="emi()" id="ime">
+        <input type="reset" value="Reset" id="reset">
+    </form>
+
+    <hr>
+    <h2>Certificate of Deposit</h2>
+    <p>This calculates the payout received from a fixed-deposit savings account.</p>
+    <form action="">
+        <label for="principal">Principal:</label>
+        <input type="text" oninput="cd()" id="principal4">
+        <label for="rate">Interest Rate:</label>
+        <input type="text" oninput="cd()" id="rate4">
+        <label for="time">Time:</label>
+        <input type="text" oninput="cd()" id="time4">
+        <label for="frequency">Compounding Frequency:</label>
+        <input type="text" oninput="cd()" id="frequency4">
+        <label for="result">Certificate of Deposit:</label>
+        <input type="text" oninput="cd()" id="result4">
+        <input type="reset" value="Reset" id="reset">
+    </form>
+
+    <hr>
+    <h2>Annual Percentage Rate (APR)</h2>
+    <p>This calculates the yearly percentage interest contribution for a loan.</p>
+    <form action="">
+        <label for="principal">Loan Amount:</label>
+        <input type="text" oninput="apr()" id="principal5">
+        <label for="rate">Interest Rate:</label>
+        <input type="text" oninput="apr()" id="rate5">
+        <label for="years">Number of Days:</label>
+        <input type="text" oninput="apr()" id="days5">
+        <label for="charges">Additional Charges:</label>
+        <input type="text" oninput="apr()" id="charges">
+        <label for="result">APR:</label>
+        <input type="text" oninput="apr()" id="apRate">
+        <input type="reset" value="Reset" id="reset">
+    </form>
+
+    <hr>
+    <h2>Present Value</h2>
+    <p>This calulates the present value of a stream of cash-flows which have a specified rate of return.</p>
+    <form action="">
+        <label for="fv">Future Value:</label>
+        <input type="text" oninput="pValue()" id="fValue">
+        <label for="rate">Discount Rate:</label>
+        <input type="text" oninput="pValue()" id="rate6">
+        <label for="years">Number of Years:</label>
+        <input type="text" oninput="pValue()" id="days6">
+        <label for="result">Present Value:</label>
+        <input type="text" oninput="pValue()" id="pVal">
+        <input type="reset" value="Reset" id="reset">
+    </form>
+
+    <hr>
+    <h2>Future Value</h2>
+    <p>This calulates the future value of a present stream of cash-flows or assets based on an assumed growth rate.</p>
+    <form action="">
+        <label for="fv">Present Value:</label>
+        <input type="text" oninput="fValue()" id="pValue">
+        <label for="rate">Discount Rate:</label>
+        <input type="text" oninput="fValue()" id="rate7">
+        <label for="years">Number of Years:</label>
+        <input type="text" oninput="fValue()" id="years7">
+        <label for="result">Future Value:</label>
+        <input type="text" oninput="fValue()" id="fVal">
+        <input type="reset" value="Reset" id="reset">
+    </form>
+
+    <hr>
+
+    <h2>Net Present Value (NPV)</h2>
+    <p>This measures the difference in present value between current cash inflows and outflows. </p>
+    <form action="">
+        <label for="inflows">Inflows:</label>
+        <input type="text" oninput="netpV()" id="iNflows">
+        <label for="years">Number of Years:</label>
+        <input type="text" oninput="netpV()" id="yEars">
+        <label for="ninflows">Net Inflows:</label>
+        <input type="text" oninput="netpV()" id="niNflows">
+        <label for="rate">Discount Rate:</label>
+        <input type="text" oninput="netpV()" id="rAte">
+        <label for="inflows">Initial Investment:</label>
+        <input type="text" oninput="netpV()" id="outFlow">
+
+
+
+
+        <label for="result">NPV:</label>
+        <input type="text" oninput="netpV()" id="nPv">
+        <input type="reset" value="Reset" id="reset">
+    </form>
+
+    <hr>
+
+    <h2>Net Income</h2>
+    <p>This calculates the net income of a business considering its costs, taxes and interests.</p>
+    <form action="">
+        <label for="revenue">Revenue:</label>
+        <input type="numer" oninput="netIncome()" id="reVenue">
+        <label for="operating">Operating Expenses:</label>
+        <input type="number" oninput="netIncome()" id="opeRating">
+        <label for="oprofit">Operating Profit:</label>
+        <input type="number" oninput="netIncome()" id="operProfit">
+        <label for="itda">Interest, Taxes, Depreciation and Ammortization:</label>
+        <input type="number" oninput="netIncome()" id="itDa">
+        <label for="oprofit">Net Income/Loss:</label>
+        <input type="number" oninput="netIncome()" id="netinCome">
+        <input type="reset" value="Reset" id="reset">
+    </form>
+
+    <hr>
+
+    <h2>Full Profit and Loss Statement Template</h2>
+    <p>This calculates the accounting figures for a trade, profit and loss statement when they are plugged in.</p>
+    <form action="">
+        <fieldset>
+            <legend>
+                <h6>Gross Income:</h6>
+            </legend>
+            <label for="revenue">Revenue:</label>
+            <input type="number" oninput="fullStatement()" id="reveNuee">
+            <label for="purchases">Cost of Goods Sold:</label>
+            <input type="number" oninput="fullStatement()" id="purChasese">
+            <label for="gprofit">Gross Profit:</label>
+            <input type="number" oninput="fullStatement()" id="grossProfite">
+        </fieldset>
+
+        <!--WE SET INPUT TYPE AS NUMBER SO THAT JS RECOGNIZES IT AS SUCH-->
+        <fieldset>
+            <legend>
+                <h6>Operating Costs:</h6>
+            </legend>
+            <label for="admin">Admin Costs:</label>
+            <input type="number" oninput="fullStatement()" id="adMine">
+            <label for="rand">R&D Costs:</label>
+            <input type="number" oninput="fullStatement()" id="ranDe">
+            <label for="maintenance">Maintenance:</label>
+            <input type="number" oninput="fullStatement()" id="mainTaine">
+            <label for="infotech">IT Costs:</label>
+            <input type="number" oninput="fullStatement()" id="infoTeche">
+            <label for="wages">Salaries and Wages:</label>
+            <input type="number" oninput="fullStatement()" id="salWagese">
+            <label for="energy">Energy Costs:</label>
+            <input type="number" oninput="fullStatement()" id="enErgye">
+            <label for="miscellaneous">Miscellaneous:</label>
+            <input type="number" oninput="fullStatement()" id="misCelle">
+            <label for="totop">Total Operating Cost:</label>
+            <input type="number" oninput="fullStatement()" id="totOps">
+            <label for="oincome">Operating Profit:</label>
+            <input type="number" oninput="fullStatement" id="oIncomee">
+        </fieldset>
+
+        <fieldset>
+            <legend>
+                <h6>Other Costs:</h6>
+            </legend>
+            <label for="interest">Interest on Loans:</label>
+            <input type="number" oninput="fullStatement()" id="inTereste">
+            <label for="exchloss">Exchange Rate Loss:</label>
+            <input type="number" oninput="fullStatement()" id="exchLosse">
+            <label for="depreciation">Depreciation:</label>
+            <input type="number" oninput="fullStatement()" id="depreCiation">
+            <label for="dividend">Dividends:</label>
+            <input type="number" oninput="fullStatement()" id="diviDende">
+            <label for="ebt">Earnings Before Taxation:</label>
+            <input type="number" oninput="fullStatement()" id="ebTe">
+            <label for="tax">Taxation:</label>
+            <input type="number" oninput="fullStatement()" id="totalTaxe">
+            <!-- <label for="totoc">Other Total Costs:</label>
+            <input type="number" oninput="fullStatement()" id="totOcs"> -->
+            <label for="netprofit">Net Profit/Loss:</label>
+            <input type="number" oninput="fullStatement()" id="netProfite">
+            <input type="reset" value="Reset" id="reset">
+        </fieldset>
+    </form>
+    <hr>
+    <h2>Contribution Margin</h2>
+    <p>This calculates the margin gained when variable cost is subtracted from selling price.</p>
+    <form action="">
+        <label for="sales">Unit Selling Price:</label>
+        <input type="number" oninput="cMargin" id="sPrice">
+        <label for="varcost">Unit Variable Cost:</label>
+        <input type="number" oninput="cMargin()" id="vCost">
+        <label for="margin">Contribution Margin:</label>
+        <input type="number" oninput="cMargin" id="cMar">
+        <label for="margin100">Contribution Margin Rate(%):</label>
+        <input type="number" oninput="cMargin()" id="mRate">
+        <input type="reset" value="Reset" id="reset">
+    </form>
+    <hr>
+    <div id="perFormance">
+        <h2>Yearly Financial Performance Appraisal</h2>
+        <p>This shows whether yearly finacial performance is favorable or unfavorable.</p>
+        <p><strong><span style="color: rgb(29,161,242);">"-1"</span></strong> depicts unfavorable, while <strong><span
+                    style="color: rgb(29,161,242);">"1"</span></strong> depicts favorable, and <strong><span
+                    style="color: rgb(29,161,242);">"0"</span></strong> means unchanged.</p>
+
+        <form action="">
+            <table>
+                <tr>
+                    <th>Account</th>
+                    <th>Budget</th>
+                    <th>Actual</th>
+                    <th>Variance</th>
+                    <th>Verdict</th>
+                </tr>
+                <tr>
+                    <td><label for="Sales">Sales</label></td>
+                    <td><input type="number" oninput="appRaisal()" id="salesB"></td>
+                    <td><input type="number" oninput="appRaisal()" id="salesC"></td>
+                    <td><input type="number" oninput="appRaisal()" id="salesD"></td>
+                    <td><input type="number" oninput="appRaisal()" id="salesE"></td>
+                </tr>
+                <tr>
+                    <td><label for="Expenses">Expenses</label></td>
+                    <td><input type="number" oninput="appRaisal()" id="expensesB"></td>
+                    <td><input type="number" oninput="appRaisal()" id="expensesC"></td>
+                    <td><input type="number" oninput="appRaisal()" id="expensesD"></td>
+                    <td><input type="number" oninput="appRaisal()" id="expensesE"></td>
+                </tr>
+                <tr>
+                    <td><label for="profit">Profit</label></td>
+                    <td><input type="number" oninput="appRaisal()" id="profitB"></td>
+                    <td><input type="number" oninput="appRaisal()" id="profitC"></td>
+                    <td><input type="number" oninput="appRaisal()" id="profitD"></td>
+                    <td><input type="number" oninput="appRaisal()" id="profitE"></td>
+                </tr>
+            </table>
+            <input type="reset" value="Reset" id="reset" oninput="appRaisal">
+        </form>
+    </div>
+
+    <hr>
+
+    <h2>Target Sales</h2>
+    <p>This provides insight on the target sales volume and value by setting a target operating (profit before tax)
+        profit.</p>
+    <form action="">
+        <label for="Target Profit">Target Operating Profit(in $):</label>
+        <input type="number" oninput="tSales()" id="tProfit">
+        <label for="sellingPrice">Unit Selling Price (in $):</label>
+        <input type="number" oninput="tSales()" id="sPrice2">
+        <label for="variableCost">Unit Variable Cost (in $):</label>
+        <input type="number" oninput="tSales()" id="vCost2">
+        <label for="variableCost">Unit Contribution Margin (in $):</label>
+        <input type="number" oninput="tSales()" id="cMargin2">
+        <label for="fixedCost">Total Fixed Cost (in $):</label>
+        <input type="number" oninput="tSales()" id="fCost">
+        <label for="salesVolume">Sales Volume(Units):</label>
+        <input type="number" oninput="tSales()" id="sVolume">
+        <label for="salesValue">Sales Value(in $)</label>
+        <input type="number" oninput="tSales()" id="sValue">
+        <input type="reset" value="Reset" id="reset">
+    </form>
+    <hr>
+
+    <h2>Cost-Volume-Profit Analysis</h2>
+    <p>This determines the relationship between cost, profitability, and sales volume.</p>
+    <form action="">
+        <label for="vcost">Variable Cost:</label>
+        <input type="number" oninput="cvp()" id="vcost21">
+        <label for="vcost">Fixed Cost:</label>
+        <input type="number" oninput="cvp()" id="fcost21">
+        <label for="vcost">Budget:</label>
+        <input type="number" oninput="cvp()" id="budget21">
+        <label for="vcost">Sales Volume(Product):</label>
+        <input type="number" oninput="cvp()" id="sales21">
+        <label for="vcost">Entities Served(Service):</label>
+        <input type="number" oninput="cvp()" id="serv21">
+        <input type="reset" value="Reset" id="reset">
+    </form>
+
+    <hr>
+    <h2>Cost Function Analysis - Engineering Analysis</h2>
+    <p>This calculates the cost function using the classic '<span style="color: rgb(29,161,242);"><b>y = a +
+                bc</b></span>' function. It forescasts what costs should be based on activity level.</p>
+    <form action="">
+        <label for="fixed cost">Fixed Cost:</label>
+        <input type="number" oninput="cFunc()" id="fcost22">
+        <label for="variable cost">Variable Cost:</label>
+        <input type="number" oninput="cFunc()" id="vcost22">
+        <label for="activity">Sales or Services:</label>
+        <input type="number" oninput="cFunc()" id="act22">
+        <label for="total cost">Total Cost:</label>
+        <input type="number" oninput="cFunc()" id="tcost22">
+        <input type="reset" value="Reset" id="reset">
+    </form>
+
+    <hr>
+    <h2>Cost Function Analysis - High/Low Method</h2>
+    <p>This determines total cost by using the highest and lowest costs and activity levels in a calendar year.</p>
+    <form action="">
+        <table>
+            <th>Month</th>
+            <th>Monthly Total Cost</th>
+            <th>Activity Level (eg, Sales)</th>
+            <tr>
+                <td><span style="color: rgb(29,161,242);">January</span></td>
+                <td><input type="number" oninput="hlow()" id="mc1"></td>
+                <td><input type="number" oninput="hlow()" id="al1"></td>
+            </tr>
+            <tr>
+                <td><span style="color: rgb(29,161,242);">February</span></td>
+                <td><input type="number" oninput="hlow()" id="mc2"></td>
+                <td><input type="number" oninput="hlow()" id="al2"></td>
+            </tr>
+            <tr>
+                <td><span style="color: rgb(29,161,242);">March</span></td>
+                <td><input type="number" oninput="hlow()" id="mc3"></td>
+                <td><input type="number" oninput="hlow()" id="al3"></td>
+            </tr>
+            <tr>
+                <td><span style="color: rgb(29,161,242);">April</span></td>
+                <td><input type="number" oninput="hlow()" id="mc4"></td>
+                <td><input type="number" oninput="hlow()" id="al4"></td>
+            </tr>
+            <tr>
+                <td><span style="color: rgb(29,161,242);">May</span></td>
+                <td><input type="number" oninput="hlow()" id="mc5"></td>
+                <td><input type="number" oninput="hlow()" id="al5"></td>
+            </tr>
+            <tr>
+                <td><span style="color: rgb(29,161,242);">June</span></td>
+                <td><input type="number" oninput="hlow()" id="mc6"></td>
+                <td><input type="number" oninput="hlow()" id="al6"></td>
+            </tr>
+            <tr>
+                <td><span style="color: rgb(29,161,242);">July</span></td>
+                <td><input type="number" oninput="hlow()" id="mc7"></td>
+                <td><input type="number" oninput="hlow()" id="al7"></td>
+            </tr>
+            <tr>
+                <td><span style="color: rgb(29,161,242);">August</span></td>
+                <td><input type="number" oninput="hlow()" id="mc8"></td>
+                <td><input type="number" oninput="hlow()" id="al8"></td>
+            </tr>
+            <tr>
+                <td><span style="color: rgb(29,161,242);">September</span></td>
+                <td><input type="number" oninput="hlow()" id="mc9"></td>
+                <td><input type="number" oninput="hlow()" id="al9"></td>
+            </tr>
+            <tr>
+                <td><span style="color: rgb(29,161,242);">October</span></td>
+                <td><input type="number" oninput="hlow()" id="mc10"></td>
+                <td><input type="number" oninput="hlow()" id="al10"></td>
+            </tr>
+            <tr>
+                <td><span style="color: rgb(29,161,242);">November</span></td>
+                <td><input type="number" oninput="hlow()" id="mc11"></td>
+                <td><input type="number" oninput="hlow()" id="al11"></td>
+            </tr>
+            <tr>
+                <td><span style="color: rgb(29,161,242);">December</span></td>
+                <td><input type="number" oninput="hlow()" id="mc12"></td>
+                <td><input type="number" oninput="hlow()" id="al12"></td>
+            </tr>
+        </table>
+
+
+        <label for="highest">Highest Cost:</label>
+        <input type="number" oninput="hlow()" id="hcost">
+        <label for="highest">Highest Activity Level:</label>
+        <input type="number" oninput="hlow()" id="hact">
+        <label for="lowest">Lowest Cost:</label>
+        <input type="number" oninput="hlow()" id="lcost">
+        <label for="lowest">Lowest Activity Level:</label>
+        <input type="number" oninput="hlow()" id="lact">
+        <label for="variable cost">Variable Cost (determined):</label>
+        <input type="number" oninput="hlow()" id="vcost23">
+        <label for="highest">Fixed Cost (High):</label>
+        <input type="number" oninput="hlow()" id="fcost23">
+        <label for="highest">Fixed Cost (Low):</label>
+        <input type="number" oninput="hlow()" id="fcost24">
+
+        <p>Plug in any activity level(eg: sales, services etc) of your choice.</p>
+        <label for="fixed cost">Fixed Cost (Determined):</label>
+        <input type="number" oninput="hlow()" id="fcost25">
+        <label for="highest">Variable Cost (Determined):</label>
+        <input type="number" oninput="hlow()" id="vcost25">
+        <label for="highest">Activity Level (Hypothetical Units):</label>
+        <input type="number" oninput="hlow()" id="act25">
+        <label for="highest">Total Cost:</label>
+        <input type="number" oninput="hlow()" id="tcost25">
+
+        <input type="reset" value="Reset" id="reset">
+    </form>
+
+    <hr>
+    <h2>Direct Manufacturing Costs</h2>
+    <p>This evaluates the make up of the direct manufacturing expenses.</p>
+    <form action="">
+        <label for="materials">Direct Material Cost:</label>
+        <input type="number" oninput="manuCost()" id="dmat">
+        <label for="Labour">Total Direct Labour Cost:</label>
+        <input type="number" oninput="manuCost()" id="tdlab">
+        <label for="employees">Number of Employees:</label>
+        <input type="number" oninput="manuCost()" id="empl">
+        <label for="unitlabor">Direct Labour Cost per Unit:</label>
+        <input type="number" oninput="manuCost()" id="ulab">
+        <label for="materials">Direct Overhead Cost:</label>
+        <input type="number" oninput="manuCost()" id="ohead">
+        <label for="materials">Total Direct Manufacturing Costs:</label>
+        <input type="number" oninput="manuCost()" id="tmanu">
+        <label for="materials">Share of Material Cost (%):</label>
+        <input type="number" oninput="manuCost()" id="shmat">
+        <label for="materials">Share of Labour Cost (%):</label>
+        <input type="number" oninput="manuCost()" id="shlab">
+        <label for="materials">Share of Overhead Costs (%):</label>
+        <input type="number" oninput="manuCost()" id="shohead">
+        <input type="reset" value="Reset" id="reset">
+    </form>
+    <script src="simba.js"></script>
+</body>
+
+</html>
