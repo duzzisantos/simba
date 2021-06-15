@@ -11,22 +11,6 @@ hamburger.addEventListener("click", () =>{
     })
 });
 
-//HOW TO DISABLE A BUTTON
-// function fill() {
-
-//     var input1 = document.getElementById("input1");
-//     var input2 = document.getElementById("input2");
-//     var input1Length = input1.value.length;
-//     var input2Length = input2.value.length;
-
-//     if (input1.value === "" || input2.value === "" || input1Length < 6 || input2Length < 6) {
-//         document.getElementById('myButton1').disabled = true;
-//     } else {
-//         document.getElementById('myButton1').disabled = false;
-//         console.log("Complete Login Credentials");
-//     }
-// }
-
 /* AN APP THAT CALCULATES SIMPLE INTEREST */
 function compute() {
     var p = document.getElementById("principal").value;
@@ -178,53 +162,6 @@ function discount() {
         document.getElementById('savings').value = "";
     }
 }
-
-//THIS IS USED TO DETERMINE BUTTON CLICKING ACTIVITY
-// let button = document.querySelector("button");
-// button.addEventListener("click", () => {
-//     alert("By Signing in, you agree to our terms and conditions.");
-// });
-
-// THIS IS USED TO DETERMINE MOUSE CLICKING ACTIVITY
-// let buttons = document.querySelector("button");
-// button.addEventListener("mousedown", event => {
-//     if (event.button === 0) {
-//         console.log("left button");
-//     } else if (event.button === 1) {
-//         console.log("middle button");
-//     } else if (event.button === 2) {
-//         console.log("right button");
-//     }
-// });
-
-// // THIS IS USED TO SEPARATE EVENTS INVOLVING SIMILAR ELEMENTS EG: BUTTONS.
-// document.body.addEventListener('click', event => {
-//     if (event.target.nodeName == "BUTTON") {
-//         console.log("Clicked", event.target.textContent);
-//     }
-// });
-
-// //THIS IS USED TO CHANGE BACKGROUND COLOR BASED ON KEYDOWN AMD KEYUP
-// window.addEventListener("keydown", event => {
-//     if (event.key == "v") {
-//         document.body.style.backgroundColor = "violet";
-//     }
-// });
-// window.addEventListener("keyup", event => {
-//     if (event.key == "v") {
-//         document.body.style.backgroundColor = "";
-//     }
-// })
-
-// window.addEventListener('click', event =>{
-//     let dot = document.createElement("div");
-//     dot.className = "dot";
-//     dot.style.left = (event.pageX - 4) + 'px';
-//     dot.style.top = (event.pageY - 4) + 'px';
-//     document.appendChild(dot);
-// });
-
-
 
 // AN APP THAT CALCULATES BREAKEVEN 
 function bep() {
