@@ -185,7 +185,7 @@ function demand() {
         document.getElementById("inference").value = "Elastic";
     } else if (p2 > p1 && q2 === q1) {
         document.getElementById("inference").value = "Zero Elastic";
-    } else if (p2 >= (p1 + (p1 * 0.01)) || p2 <= (p1 + (p1 * 0.2)) && q2 >= (q1 + (q1 * 0.01)) || q2 <= (q1 + (q1 * 1))) {
+    } else if (p2 >= (p1 + (p1 * 0.01)) && p2 <= (p1 + (p1 * 0.2)) || q2 >= (q1 + (q1 * 0.01)) && q2 <= (q1 + (q1 * 1))) {
         document.getElementById("inference").value = "Inelastic";
     }
 }
@@ -635,3 +635,191 @@ function netRatio() {
     var nRatio = (+eat / +net45) * +100;
     document.getElementById("nRatio").value = Math.round(nRatio);
 }
+
+
+//AN APP THAT CALCULATES GDP
+
+function gdp() {
+    var gdpc = document.getElementById("gdpc").value;
+    var gdpg = document.getElementById("gdpg").value;
+    var gdpi = document.getElementById("gdpi").value;
+    var gdpx = document.getElementById("gdpx").value;
+    var gdpm = document.getElementById("gdpm").value;
+    var gdpp = +gdpc + +gdpg + +gdpi + (+gdpx - +gdpm);
+    document.getElementById("gdpgdp").value = gdpp;
+    if (gdpp < 0) {
+        document.getElementById("gdpVerdict").value = "Economic Recession";
+        gdpVerdict.style.color = "red";
+    } else if (gdpp > 0) {
+        document.getElementById("gdpVerdict").value = "Stable Economy";
+        gdpVerdict.style.color = "green";
+    }
+}
+
+//AN APP THAT CALCULATES UNEMPLOYMENT RATE  (UPDATE THE VERDICT OUTPUT BEHAVIOUR)
+
+function unEmploy() {
+    var unemp = document.getElementById("unemp").value;
+    var emp = document.getElementById("emp").value;
+    var unRate = +unemp / +emp * +100;
+    document.getElementById("unRate").value = unRate;
+
+    if (unRate < 5) {
+        document.getElementById("unVerdict").value = "Low Unemployment";
+        unVerdict.style.backgroundColor = "green";
+    } else if (unRate >= 5 && unRate <= 10) {
+        document.getElementById("unVerdict").value = "Medium Unemployment";
+        unVerdict.style.backgroundColor = "pink";
+    } else if (unRate > 10) {
+        document.getElementById("unVerdict").value = "High Unemployment";
+        unVerdict.style.backgroundColor = "red";
+    } else if (unRate === "" || emp === "" || unemp === "") {
+        unVerdict.style.backgroundColor = none;
+        document.getElementById("unVerdict").value = "";
+        function noColor() {
+            var reset = document.getElementById("reset");
+            reset.addEventListener('click', () => {
+                unVerdict.style.backgroundColor = "white";
+            });
+        }
+        noColor();
+    }
+}
+
+
+//AN APP THAT CALCULATES MONEY MULTIPLIER METRIC
+
+function mmm() {
+    var rRatio = document.getElementById("rRatio").value;
+    var mMetric = +1 / +rRatio;
+    document.getElementById("mMetric").value = Math.round(mMetric);
+}
+
+
+//AN APP THAT CALCULATES INVENTORY VELOCITY
+
+function iVelocity() {
+    var opStock = document.getElementById("opStock").value;
+    var proj = document.getElementById("projSales").value;
+    var iVelo = (+opStock / +proj) * +100;
+    document.getElementById("iVelo").value = Math.round(iVelo);
+}
+
+//AN APP THAT CALCULATES PERFECT ORDER MEASUREMENT
+
+function perfectOrder() {
+    var tOrders = document.getElementById("tOrders").value;
+    var eOrders = document.getElementById("eOrders").value;
+    var pOrders = ((+tOrders - +eOrders) / +tOrders) * +100;
+    document.getElementById("pOrders").value = pOrders;
+    document.getElementById("pError").value = +100 - +pOrders;
+    pError.style.color = "red";
+}
+
+//AN APP THAT CALCULATES INVENTORY TURNOVER RATIO
+
+function itr() {
+    var itrGoods = document.getElementById("itrGoods").value;
+    var itrStock = document.getElementById("itrStock").value;
+    var itrClosing = document.getElementById("itrClosing").value;
+    var iTurn = +itrGoods / [(+itrStock - +itrClosing) / 2];
+    document.getElementById("iturnOver").value = Math.round(iTurn);
+}
+
+//AN APP THAT CALCULATES CASH TO CASH CYCLE TIME - this finds the difference between dates basically.
+function cashCycle() {
+
+    //3 important methods used: new Date(), Math.abs() and date.getTime()
+    var mpDate = document.getElementById("mPayment").value;
+    var mpDate = new Date(mpDate);
+    var cpDate = document.getElementById("cPayment").value;
+    var cpDate = new Date(cpDate);
+    var oneDay = +24 * +60 * +60 * +1000; //formula for one calendar day
+    var diffDays = Math.abs((mpDate.getTime() - cpDate.getTime()) / (oneDay)); //Math.abs extracts the absolute values of the dates and date.getTime() converts them to integers
+    document.getElementById("cashPayment").value = `${diffDays} days`;
+}
+
+//AN APP THAT CALCULATES GROSS MARGIN RETURN ON INVESTMENT
+
+function gmri() {
+    var roiGross = document.getElementById("roiGross").value;
+    var roiOpening = document.getElementById("roiOpening").value;
+    var roiClosing = document.getElementById("roiClosing").value;
+    var roiReturn = +roiGross / [(+roiOpening - +roiClosing) / 2] * 100;
+    document.getElementById("roiReturn").value = roiReturn;
+}
+
+//AN APP THAT CALCULATES ON-TIME SHIPPING RATE
+
+function onTime() {
+    var timely = document.getElementById('timely').value;
+    var tItems = document.getElementById("totalItems").value;
+    var shipRate = (+timely / +tItems) * 100;
+    document.getElementById("shipRate").value = `${Math.round(shipRate)}%`;
+    var lateShip = 100 - Math.round(shipRate);
+    document.getElementById("lateShip").value = `${Math.round(lateShip)}%`;
+}
+
+//AN APP THAT CALCULATES FILL RATE AND SHOWS CUSTOMER SATISFACTION LEVEL
+
+function fillRate() {
+    var fillOrders = document.getElementById("fillOrders").value;
+    var fillShip = document.getElementById("fillShip").value;
+    var fill = [1 - ((+fillOrders - +fillShip) / +fillOrders)] * 100;
+    document.getElementById("fill").value = `${Math.round(fill)}%`;
+    var satis = document.getElementById("satis");
+    //conditionals to pass verdict on customer satisfaction level
+    if (fill >= 0 && fill <= 30) {
+        satis.value = 'Extremely Low Satisfaction';
+        satis.style.color = 'white';
+        satis.style.backgroundColor = 'red';
+    } else if (fill >= 31 && fill <= 50) {
+        satis.value = 'Low Satisfaction';
+        satis.style.color = 'white';
+        satis.style.backgroundColor = 'tomato';
+    } else if (fill >= 51 && fill <= 80) {
+        satis.value = 'Average Satisfaction';
+        satis.style.color = 'white';
+        satis.style.backgroundColor = 'lightgreen';
+    } else if (fill >= 81 && fill <= 100) {
+        satis.value = "High Satisfaction";
+        satis.style.color = "white";
+        satis.style.backgroundColor = 'green';
+    }
+}
+
+//AN APP THAT COMPUTES AVERAGE PAYMENT PERIOD FOR PRODUCTION MATERIALS
+
+function payPeriod() {
+    var mPayable = document.getElementById("mPayable").value;
+    var cMaterials = document.getElementById("costMaterials").value;
+    var dPeriod = document.getElementById("dPeriod").value;
+    var apppm = (+mPayable / +cMaterials) * +dPeriod;
+    document.getElementById('apppm').value = `${Math.round(apppm)} days`;
+}
+
+//AN APP THAT COMPUTES INVENTORY DAYS OF SUPPLY
+
+function daySupply() {
+    const onHand = document.getElementById("onHand").value;
+    const useDaily = document.getElementById('usageDaily').value;
+    const invDays = parseInt(onHand) / parseInt(useDaily);
+    document.getElementById('invDays').value = Math.round(invDays);
+}
+
+//AN APP THAT COMPUTES FREIGHT COST PER UNIT
+function costFreight() {
+    const tFreight = document.querySelector('#freightTotal').value;
+    const numItems = document.querySelector("#numItems").value;
+    const freightUnit = parseInt(tFreight) / parseInt(numItems);
+    document.getElementById('freightUnit').value = `$${freightUnit.toFixed(2)}`;
+}
+
+// FREIGHT BILL ACCURACY 
+function errorFree() {
+    const freightBill = document.getElementById("freightTotal2").value;
+    const noError = document.getElementById("noError").value;
+    const fba = ([parseInt(freightBill) / parseInt(noError)] * 100);
+    document.getElementById("fba").value = `${Math.round(fba)}%`;
+}
+
